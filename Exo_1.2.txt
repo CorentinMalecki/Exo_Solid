@@ -1,0 +1,39 @@
+Q1:
+    B) La classe EmailValidator
+
+Q2:
+    D) 4 raisons de changer
+
+Q3:
+    B) Option B - Extensible sans modification
+
+Q4:
+    A) On peut ajouter de nouvelles fonctionnalités en créant de nouvelles classes
+    C) On peut étendre le comportement sans modifier le code source des classes existantes
+    E) On utilise des abstractions (interfaces, classes abstraites) pour permettre l'extension
+
+Q5:
+    B) Option B (Rectangle/Square)
+
+Q6:
+    A) On devrait pouvoir remplacer Parent par Child sans casser le programme
+    C) Child peut renforcer les post-conditions (garantir plus)
+    D) Child peut affaiblir les pré-conditions (demander moins)
+
+Q7:
+    A) Option A
+
+Q8:
+    A) Une interface avec beaucoup de méthodes (10+)
+    B) Une interface qui force les clients à implémenter des méthodes dont ils n'ont pas besoin
+    D) Une violation du principe ISP
+    E) Une interface qui crée un couplage fort entre les clients
+
+Q9:
+    A) Option A
+
+Q10:
+    A) Les modules de haut niveau ne doivent pas dépendre des modules de bas niveau
+    B) Tous les modules doivent dépendre d'abstractions (interfaces, classes abstraites)
+    D) L'injection de dépendances est une technique pour appliquer DIP
+    E) Les détails d'implémentation doivent dépendre des abstractions, pas l'inverse

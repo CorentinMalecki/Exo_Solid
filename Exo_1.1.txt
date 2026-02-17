@@ -1,0 +1,45 @@
+Partie 1:
+    Q1.1: 
+    Combien de responsabilités distinctes cette classe **UserAccount** possède-t-elle ?
+        D) 6 ou plus
+
+    Q1.2:
+    Pour chaque méthode ci-dessous, identifie la responsabilité (domaine métier) dont elle fait partie :
+        save() -> Persistence / stockage
+        sendWelcomeEmail() -> communication / notification
+        validatePassword() -> Validation / Règles métier
+        generateReport() -> Présentation / Formatage
+        hashPassword() -> Sécurité / Cryptographie
+        updateLastLogin() -> Persistence / Stockage
+        exportToJSON() -> Export / Transformation
+        sendPasswordResetEmail() -> Communication / Notification
+
+Partie 2:
+    Q2.1:
+    Liste 3 raisons techniques qui pourraient nécessiter de modifier cette classe **UserAccount** :
+        la maintenabilité et l'evolution - simplifier la compréhension et les tests -  découplé pour rendre l'architecture plus modulaire et fexible
+
+    Q2.2:
+    Pour chaque scénario, indique COMBIEN de méthodes de **UserAccount** devraient être modifiées :
+        Le système de base de données change (SQL → MongoDB) -> 2 méthodes
+        Le service d'email change (SMTP → API SendGrid) -> 2 méthodes
+        Les règles de validation du mot de passe changent (min 12 caractères) -> 1 méthodes
+        Le format du rapport change (texte → HTML) -> 1 méthodes
+
+Partie 3:
+    Q3.1:
+    Propose des noms de classes pour séparer les responsabilités. Complète le tableau :
+    exemple :
+    Résponsabilité identifiée:  Nom de classe proposée: Méthodes qui y seront déplacées:
+    Stockage                    UserRepository          save() UpdateLastLogin()
+    Communication               EmailService            sendWelcomeEmail() sendPasswordResetEmail()
+    Export                      ExportService           exportToJSON()
+    Présentation                ReportGenerator         generateReport()
+    Sécurité                    PasswordHasher          hashPassword()
+    Validation                  PasswordValidator       validatePassword()
+
+    Q3.2:
+    Que devrait contenir la classe **UserAccount** après le refactoring ?
+        A) Les attributs (username, email, password, createdAt, lastLoginAt)
+        B) Les getters pour accéder aux attributs
+        F) Une méthode equals() pour comparer deux utilisateurs

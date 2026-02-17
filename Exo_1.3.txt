@@ -1,0 +1,131 @@
+Partie 1:
+    Q1.1:
+    Identifie les responsabilités distinctes présentes dans cette classe **Product**:
+        Responsabilité:         Méthodes:                       Raison de changement:
+        Export                  exportToXML() exportToJSON()    changement de format d'export
+        Stockage                save() update() delete()        changement de système de stockage
+        Présentation            generatePDF()                   changement de format de présentation
+        Notification            sendLowStockAlert()             changement de système de notification
+        traitement              calculateDiscount(customerType) calculateTax(country) changement des règles métier de calcul
+
+    Q1.2:
+    Pour chaque scénario, indique combien de méthodes de la classe **Product** devront être modifiées :
+        La base de données passe de MySQL à MongoDB 3 méthodes save() update() delete()
+        Le service d'email change (SMTP → SendGrid API) 1 méthodes sendLowStockAlert()
+        Les règles de réduction changent (nouvelles catégories de clients) 1 méthodes calculateDiscount(customerType)
+        On ajoute un nouveau format d'export (CSV) 0 méthodes on ajoute une nouvelles méthodes
+        Les taux de TVA changent dans tous les pays 1 méthodes calculateTax(country)
+
+    Q1.3:
+    Explique en 3-5 phrases pourquoi cette architecture pose problème pour la maintenance à long terme :
+    Un dévellopeur prenant le projet en cours aurat du mal a s'y retrouver (compréhension).
+    La maintenabilité du code est difficile et son evolution également.
+    La mise en place de test unitaire serat elle aussi compliqué.
+    On se retrouve avec une "god class" alors qu'il est préférable de découpler.
+
+Partie 2:
+    Q2.1:
+    Propose un nouveau diagramme de classes respectant SRP.
+
+┌────────────────────┐
+│     Product        │  ← ENTITÉ (Données uniquement)
+├────────────────────┤
+│ -id: string        │
+│ -name: string      │
+│ -price: number     │
+│ -category: string  │
+│ -stock: number     │
+├────────────────────┤
+│ +getId()           │
+│ +getName()         │
+│ +getPrice()        │
+│ +getStock()        │
+└────────────────────┘
+
+┌─────────────────────────────┐
+│  Classe 1 : ProductRepository    │  ← Responsabilité : Persistence
+├─────────────────────────────┤
+│ Méthodes :                  │
+│ • save()                    │
+│ • update()                  │
+│ • delete()                  │
+└─────────────────────────────┘
+
+┌─────────────────────────────┐
+│  Classe 2 : DataCalculator  │  ← Responsabilité : Calculs métier
+├─────────────────────────────┤
+│ Méthodes :                  │
+│ • calculateDiscount(customerType)│
+│ • calculateTax(country)     │
+└─────────────────────────────┘
+
+┌─────────────────────────────┐
+│  Classe 3 : StockAlert      │  ← Responsabilité : Notification
+├─────────────────────────────┤
+│ Méthodes :                  │
+│ • sendLowStockAlert()       │
+└─────────────────────────────┘
+
+┌─────────────────────────────┐
+│  Classe 4 : GeneratePDF     │  ← Responsabilité : Génération documents
+├─────────────────────────────┤
+│ Méthodes :                  │
+│ • generatePDF()             │
+└─────────────────────────────┘
+
+┌─────────────────────────────┐
+│  Classe 5 : ExportData      │  ← Responsabilité : Export données
+├─────────────────────────────┤
+│ Méthodes :                  │
+│ • exportToXML()             │
+│ • exportToJSON()            │
+└─────────────────────────────┘
+
+    Q2.2:
+    Pour chaque classe que tu as proposée, justifie son existence en une phrase :
+
+    Class 1 : gère les opérations CRUD et la persistance
+    class 2 : gère les calculs métier (réductions, taxes)
+    class 3 : gère l'envoi d'alertes
+    class 4 : génère des documents
+    class 5 : gère l'export dans différents formats
+
+Partie 3:
+    Q3.1:
+        a) Pourquoi ces méthodes violent-elles OCP ?
+            A) Pour ajouter un nouveau type de client, il faut modifier la méthode calculateDiscount()
+            B) Les valeurs de réduction sont hard-codées dans le code
+            C) Il y a trop de conditions if/else
+            D) Il n'y a pas d'interface utilisée
+            E) Ajouter un nouveau pays nécessite de modifier calculateTax()
+
+        b) Quel serait l'impact d'ajouter un type de client "corporate" avec 25% de réduction ?
+            B) Il faut modifier calculateDiscount() et retester tous les types existants
+
+    Q3.2:
+    Propose une solution respectant OCP pour les calculs de réduction.
+
+    Interface/Abstract :
+┌──────────────────────────┐
+│  ___     │  ← Nom de l'interface
+├──────────────────────────┤
+│ +calculate(price): number│
+└──────────────────────────┘
+           ▲
+           │ implements
+           │
+    ┌──────┴──────┬──────────────┐
+    │             │              │
+┌───────────┐ ┌──────────┐ ┌──────────┐
+│ Classe 1  │ │ Classe 2 │ │ Classe 3 │
+│ Regular   │ │ Premium  │ │ VIP      │
+│ (5%)      │ │ (10%)    │ │ (20%)    │
+└───────────┘ └──────────┘ └──────────┘
+
+Noms à compléter :
+• Interface : DiscountCalculator
+• Classe 1 : RegularDiscount
+• Classe 2 : PremiumDiscount
+• Classe 3 : VIPDiscount
+
+On a juste a rajouter un class 4 et étendre l'interface avec implements.
