@@ -13,15 +13,15 @@ Q4:
     E) On utilise des abstractions (interfaces, classes abstraites) pour permettre l'extension
 
 Q5:
-    B) Option B (Rectangle/Square)
+    C) Option C (Vehicle/Bicycle)
 
 Q6:
     A) On devrait pouvoir remplacer Parent par Child sans casser le programme
     C) Child peut renforcer les post-conditions (garantir plus)
-    D) Child peut affaiblir les pré-conditions (demander moins)
+    E)
 
 Q7:
-    A) Option A
+    A) Option B
 
 Q8:
     A) Une interface avec beaucoup de méthodes (10+)

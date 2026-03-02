@@ -1,0 +1,14 @@
+1:
+Élément du code :           Type (Donnée/Constante/Action): Deviendra dans la classe:
+accountHolder               Donnée                          private _holder: string
+balance                     Donnée                          private _balance: number
+interestRate                Donnée                          private _interest: number
+minimumBalance              Donnée                          private _minBalance: number
+penaltyFee                  Constante                       private _penalty: number
+openAccount                 Action                          constructor ou public openAccount(name, initialDeposit, rate): void
+deposit                     Action                          public deposit(amount: number): boolean
+withdraw                    Action                          public withdraw(amount: number): boolean
+calculateYearlyInterest     Action                          public calculateYearlyInterest(): number
+applyYearlyInterest         Action                          public applyYearlyInterest(): void
+getAccountInfo              Donnée                         public getAccountInfo(): void
+isBelowMinimum              Action                          public isBelowMinimum(): boolean

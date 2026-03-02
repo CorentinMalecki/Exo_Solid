@@ -1,0 +1,20 @@
+1) Faux elle devrait avoir peu de methode et que ce soit cohérant avec la fonctionnalité
+2) Vrai Robot ne mange pas et ne dors pas, la conception du code est mauvaise
+    il faudrait une interface travailler, une manger, une dormir et un class human implements tout et une class robot implements travailler
+3) Vrai on decrit quelques choses de réutilisable sur des objets (capacité ou role) sauf pour les metiers genre ce qui gére les utilisateurs, gére le paiement
+    A Trop de méthode
+    D A des responsabilités en trop
+    B - C - E correct
+4) Faux le ISP cest de ne pas utiliser des interfaces dont les class n'ont pas besoin
+5) Faux c'est le principe de l'ISP un des 5 principes du solides ça permet de découpler les responsabilités et evite les dépendances inutiles
+6) Vrai, si c'est cohérant lié a la même responsabilités (role / capacité / métier)
+    A - C 
+7) Vrai en utilisant pas de methodes inutiles et en séparant les responsabilités, on protége le client
+    Vrai
+8) Vrai il vaut mieux plusieurs interface spécialisé qu'un gros fourre tout
+    oui parfaitement
+9) faux en architecture générale isp est utilisé pour les classes abstraites et concrétes
+    ISP s’applique à tous ces cas, car le principe reste : « Ne force pas un client à dépendre de méthodes dont il n’a pas besoin. »
+    A - B - C - D -> 9 -> ça depends
+10) faux, tout depends des responsabilités
+    vrai

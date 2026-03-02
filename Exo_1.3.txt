@@ -94,9 +94,7 @@ Partie 3:
     Q3.1:
         a) Pourquoi ces méthodes violent-elles OCP ?
             A) Pour ajouter un nouveau type de client, il faut modifier la méthode calculateDiscount()
-            B) Les valeurs de réduction sont hard-codées dans le code
             C) Il y a trop de conditions if/else
-            D) Il n'y a pas d'interface utilisée
             E) Ajouter un nouveau pays nécessite de modifier calculateTax()
 
         b) Quel serait l'impact d'ajouter un type de client "corporate" avec 25% de réduction ?

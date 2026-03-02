@@ -1,0 +1,60 @@
+Partie 1:
+    Q1.1:
+    Responsabilité :            Méthodes/sections concernées :                                          Raison de changement :                  Priorité de séparation :
+    validation                  Lignes 20-70 (validation nom, dates, email, chambre)                    Règles de validation changent           4
+    calcul du prix              Lignes 74-113 (calcule du prix: chambre, réduction, saison)             Chamgement calcule du prix              5
+    Traitement du paiement      Lignes 115-185 (dif type de paiement, hash, validation, simulation)     Changement des éléments cité            5
+    création de la réservation  Lignes 187-206 (création entité booking)                                Modification de l'entité                1
+    Save en BDD                 Lignes 208-217 (save en BDD)                                            Changement pour véritable save          1
+    Communication               Lignes 219-268 (config, géné contenu et envoi du mail)                  Changement de méthodes ou contenu       4
+    Géné pdf                    Lignes 270-296 (génération du pdf)                                      Changement contenu                      1
+    Annulation reser            Lignes 298-441 (tout ce qui concerne l'annulation (four tout))          Multiple                                5
+
+    Q1.2:
+    S - Single Responsibility Principle (SRP):
+    Violation 1:
+        Validation, qui valide tout, nom, email, dates, chambre et la disponibilité
+        lignes 20-70
+    Violation 2:
+        calcul du prix, qui gére aussi les types de chambres, les réductions et la saisons
+        Lignes 74-113
+
+    O - Open/Closed Principle (OCP):
+    Violation 1:  
+        annulation de réservation, tout est dedans donc a  chaque modification, il faut tout vérifier
+        lignes 298-441
+    Violation 2:
+        envoi d'email de réservation, même chose, si on doit modifier la methode d'envoie il faut tout vérifier/modifier
+        lignes 219-268
+
+    L - Liskov Substitution Principle (LSP):
+    Violation 1:
+        Traitement du paiement, risque en cas de mauvaise conception et application du solid
+        ligne 115-185
+    Violation 2:
+        annulation de réservation, même chose
+        lignes 298-441
+    
+    I - Interface Segregation Principle (ISP):
+    Violation 1: 
+    Violation 2:
+
+    D - Dependency Inversion Principle (DIP):
+    Violation 1: 
+        BookingSystem dépend de nodemailer -> node.js
+        lignes 224-232
+    Violation 2:
+        dépend de crypto -> node.js
+        137-139
+
+    Q2.1:
+    Propose un **diagramme de classes complet** respectant SOLID.
+
+    Utilise Mermaid pour créer ton diagramme. Il doit inclure :
+
+    - Les entités métier (ex: `Booking`)
+    - Les services métier (ex: `PriceCalculator`)
+    - Les interfaces/abstractions (ex: `IPaymentGateway`)
+    - Les implémentations concrètes (ex: `CreditCardPayment`)
+    - Les relations entre classes (dépendances, implémentations)
+
